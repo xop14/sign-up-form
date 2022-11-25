@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Sign-up Form</title>
+</head>
+<body>
+    <div class="section left">
+        <div class="logo">      
+            <img src="./images/rocket-logo-white.svg" alt="rocket">
+            <h1>Space Inc.</h1>
+        </div>
+        <div class="photo-credits">
+            Photo by <a href="https://unsplash.com/@designhorf?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Ferenc Horvath</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+        </div>
+    </div>
+    <div class="section right">
+        <div class="sign-up-blurb">
+            <h1>Connect with space enthusiasts across the planet.</h1>
+            <p>
+                This is not a real online service!
+                Sign up now to get started.
+            </p>
+        </div>
+        <div class="form">
+            <h2>Let's do this!</h2>
+            <form action="">
+                <div class="field-row">
+                    <div class="field">
+                        <label for="first-name">First name</label>
+                        <input id="first-name" type="text" name="first-name" maxlength="64" title="a-z, A-Z, hypens and spaces allowed" pattern="[a-zA-Z- ]+">
+                        <span></span>
+                    </div>
+                    <div class="field">
+                        <label for="last-name">Last name</label>
+                        <input id="last-name" type="text" name="last-name" maxlength="64">
+                        <span></span>
+                    </div>
+                </div>
+                <div class="field-row">
+                    <div class="field">
+                        <label for="email">Email</label>
+                        <input id="email" type="email" name="email" maxlength="64">
+                        <span></span>
+                    </div>
+                    <div class="field">
+                        <label for="phone-number">Phone number</label>
+                        <input id="phone-number" type="tel" name="phone-number" max="20">
+                        <span></span>
+                    </div>
+                </div>
+                <div class="field-row">
+                    <div class="field">
+                        <label for="password">Password</label>
+                        <input id="password" type="password" name="password" maxlength="30" pattern="">
+                        <span></span>
+                    </div>
+                    <div class="field">
+                        <label for="confirm-password">Confirm password</label>
+                        <input id="confirm-pasword" type="password" name="confirm-password" maxlength="30">
+                        <span></span>
+                    </div>
+                </div>
+                <button>Create account</button>
+            </form>
+        </div>
+        <div class="login-link">Already have an account? <a href="">Log in</a></div>
+    </div>
+
+</body>
+</html>
