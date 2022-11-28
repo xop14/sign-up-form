@@ -3,7 +3,7 @@
 :root {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: #5d4d7c;
-
+    font-size: 16px;
 }
 
 * {
@@ -17,6 +17,25 @@ body {
     display: flex;
     flex-wrap: wrap;
 }
+
+h1 {
+    margin-bottom: 1rem;
+    line-height: 2.2rem;
+    color: #5b34a8;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+
+h2 {
+    margin-bottom: 1rem;
+    line-height: 1.9rem;
+    color: #5b34a8;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+
+p {
+    margin-top: 1rem ;
+}
+
 .section {
     padding: 20px;
 }
@@ -50,11 +69,10 @@ body {
 }
 
 .photo-credits, .photo-credits a {
-    font-size: 0.6rem;
+    font-size: 0.8rem;
     color: rgba(205, 170, 241, 0.6);
     margin-bottom: 10px;
 }
-
 
 .right {
     background-color: #f4efff;
@@ -69,32 +87,10 @@ body {
     line-height: 1.3rem;
 }
 
-h1 {
-    margin-bottom: 1rem;
-    line-height: 2.2rem;
-    color: #5b34a8;
-    font-family: 'M PLUS Rounded 1c', sans-serif;
-}
-
-h2 {
-    margin-bottom: 1rem;
-    line-height: 1.9rem;
-    color: #5b34a8;
-    font-family: 'M PLUS Rounded 1c', sans-serif;
-}
-
-p {
-    margin-top: 1rem ;
-}
-
 .form {
     display: flex;
     flex-direction: column;
     padding-block: 5vh;
-}
-
-form {
-    background-color: ;
 }
 
 .field-row {
@@ -117,11 +113,30 @@ form {
 .field label {
     padding-bottom: 6px;
 }
-/* .field span {
-    position: absolute;
-    bottom: 12px;
-    right: 12px;
-} */
+
+.invalid {
+    background-image: url(./images/circle-xmark-solid-red.svg);
+    background-size: 20px;
+    background-position: 96%;
+    background-repeat: no-repeat;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    animation: shake 0.5s ease forwards;
+    border: 2px solid #DA2E2E !important;
+}
+
+.shake {
+    animation: shake 0.5s ease forwards;
+}
+.shake2 {
+    animation: shake2 0.5s ease forwards;
+}
+
+.valid {
+    background-image: url(./images/circle-check-solid-green.svg);
+    background-size: 20px;
+    background-position: 96%;
+    background-repeat: no-repeat;
+}
 
 .required {
     background-color: #ad5fe8;
@@ -143,20 +158,15 @@ input {
     border-radius: 5px;
     border: 2px solid #ccc;
     color: #444;
-    padding-right: 30px;
+    padding-right: 40px;
     outline: none;
+    font-size: 1rem;
 }
 
-/* .validate:invalid {
-    background-image: url(./images/circle-xmark-solid-red.svg);
-    background-size: 20px;
-    background-position: 95%;
-    background-repeat: no-repeat;
-    transition: 1s;
-    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
-    animation: shake 0.3s ease 0s 1 normal forwards;
-    border: 2px solid #DA2E2E;
-} */
+input:focus {
+    outline: none !important;
+    border: 2px solid #4b0cc9;
+}
 
 .message {
     font-size: 0.7rem;
@@ -170,18 +180,6 @@ input {
     padding-top: 6px;
     color: #d81f1f;
     flex: 1;
-}
-
-/* .validate:valid {
-    background-image: url(./images/circle-check-solid-green.svg);
-    background-size: 20px;
-    background-position: 95%;
-    background-repeat: no-repeat;
-} */
-
-input:focus {
-    outline: none !important;
-    border: 2px solid #4b0cc9;
 }
 
 button {
@@ -208,7 +206,37 @@ button:disabled {
     border: 1px solid #222;
 }
 
+
+/* animations */
+
 @keyframes shake {
+	0%, 100% {
+		transform: translateX(0);
+	}
+
+	10%,
+	30%,
+	50%,
+	70% {
+		transform: translateX(-5px);
+	}
+
+	20%,
+	40%,
+	60% {
+		transform: translateX(5px);
+	}
+
+	80% {
+		transform: translateX(2px);
+	}
+
+	90% {
+		transform: translateX(-2px);
+	}
+}
+
+@keyframes shake2 {
 	0%,
 	100% {
 		transform: translateX(0);
@@ -237,20 +265,3 @@ button:disabled {
 }
 
 
-
-.invalid {
-    background-image: url(./images/circle-xmark-solid-red.svg);
-    background-size: 20px;
-    background-position: 96%;
-    background-repeat: no-repeat;
-    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
-    animation: shake 0.3s ease 0s 1 normal forwards;
-    border: 2px solid #DA2E2E !important;
-}
-
-.valid {
-    background-image: url(./images/circle-check-solid-green.svg);
-    background-size: 20px;
-    background-position: 96%;
-    background-repeat: no-repeat;
-}

@@ -1,5 +1,6 @@
 "use strict";
 
+const form = document.querySelector("form");
 const inputs = document.querySelectorAll("input");
 const firstName = document.querySelector("#first-name");
 const lastName = document.querySelector("#last-name");
@@ -7,7 +8,7 @@ const email = document.querySelector("#email");
 const phone = document.querySelector("#phone-number");
 const password = document.querySelector("#password");
 const confirmPassword = document.querySelector("#confirm-password");
-const submit = document.querySelector("#submit");
+// const submit = document.querySelector("#submit");
 const namePattern = /^[a-zA-Z- ]+$/;
 const emailPattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const phonePattern = /^[0-9 \-\+]{6,16}$/;
@@ -26,10 +27,30 @@ inputs.forEach((input) => {
 });
 
 inputs.forEach((input) => {
-    input.addEventListener("keyup", (e) => {
+    input.addEventListener("input", (e) => {
         if (e.target.classList.contains("validate")) {
             validateFields(e.target);
         }
+    });
+});
+
+
+// on submit, this checks validity of each field and prevents submit if any are invalid
+form.addEventListener("submit", (e) => {
+    inputs.forEach((input) => {
+        if (validateFields(input) === false) {
+            e.preventDefault();
+            // toggles between two identical shake animations which is necessary
+            // for the animation to play again
+            if (input.classList.contains("shake")) {
+                input.classList.remove("shake");
+                input.classList.add("shake2");
+            } else {
+                input.classList.add("shake");
+                input.classList.remove("shake2");
+            }
+        }
+        input.classList.add("validate");
     });
 });
 
@@ -40,6 +61,7 @@ function validateFields(target) {
     if (target["id"] === "first-name" && !namePattern.test(firstName.value)) {
         firstName.nextElementSibling.textContent = "Only a-z, A-Z, hyphens and spaces allowed";
         addInvalid(target);
+        return false;
     } else if (target["id"] === "first-name" && namePattern.test(firstName.value)) {
         firstName.nextElementSibling.textContent = "";
         addValid(target);
@@ -49,6 +71,7 @@ function validateFields(target) {
     if (target["id"] === "last-name" && !namePattern.test(lastName.value)) {
         lastName.nextElementSibling.textContent = "Only a-z, A-Z, hyphens and spaces allowed";
         addInvalid(target);
+        return false;
     } else if (target["id"] === "last-name" && namePattern.test(lastName.value)) {
         lastName.nextElementSibling.textContent = "";
         addValid(target);
@@ -58,6 +81,7 @@ function validateFields(target) {
     if (target["id"] === "email" && !emailPattern.test(email.value)) {
         email.nextElementSibling.textContent = "Please enter a valid email address";
         addInvalid(target);
+        return false;
     } else if (target["id"] === "email" && emailPattern.test(email.value)) {
         email.nextElementSibling.textContent = "";
         addValid(target);
@@ -70,8 +94,9 @@ function validateFields(target) {
         phone.classList.remove("invalid");
         phone.nextElementSibling.textContent = "";
     } else if (target["id"] === "phone-number" && !phonePattern.test(phone.value)) {
-        phone.nextElementSibling.textContent = "Must contain 6-16 numbers";
+        phone.nextElementSibling.textContent = "Please enter a valid phone number";
         addInvalid(target);
+        return false;
     } else if (target["id"] === "phone-number" && phonePattern.test(phone.value)) {
         phone.nextElementSibling.textContent = "";
         addValid(target);
@@ -81,93 +106,37 @@ function validateFields(target) {
     if (target["id"] === "password" && (!passwordPattern.test(password.value) || password.value.length < 8)) {
         password.nextElementSibling.classList.add("error-message");
         addInvalid(target);
+        return false;
     } else if (target["id"] === "password" && passwordPattern.test(password.value)) {
         password.nextElementSibling.classList.remove("error-message");
         addValid(target);
+        if (confirmPassword.classList.contains("validate") && password.value !== confirmPassword.value) {
+            confirmPassword.nextElementSibling.textContent = "Passwords do not match";
+            addInvalid(confirmPassword);
+            return false;
+        }
     }
 
     // validate confirm password
-    if (target["id"] === "confirm-password" && password.value !== confirmPassword.value) {
+    if (target["id"] === "confirm-password" && (password.value !== confirmPassword.value || !passwordPattern.test(confirmPassword.value) || confirmPassword.value.length < 8)) {
         confirmPassword.nextElementSibling.textContent = "Passwords do not match";
         addInvalid(target);
+        return false;
     } else if (target["id"] === "confirm-password" && password.value === confirmPassword.value) {
         confirmPassword.nextElementSibling.textContent = "";
         addValid(target);
     }
 }
 
+
+
 // apply valid/invalid css classes
 function addInvalid(target) {
-    console.log("INVALID");
     target.classList.remove("valid");
     target.classList.add("invalid");
 }
 
 function addValid(target) {
-    console.log("VALID")
     target.classList.remove("invalid");
     target.classList.add("valid");
 }
-
-
-//backup
-
-// inputs.forEach((input) => {
-//     input.addEventListener("blur", (e) => {
-//         if (e.target.value !== "") {
-//             e.target.classList.add("validate");
-
-//             // validate first name
-//             if (e.target["id"] === "first-name" && !namePattern.test(firstName.value)) {
-//                 console.log("firstName not OK");
-//                 firstName.nextElementSibling.textContent = "Only a-z, A-Z, hyphens and spaces allowed";
-//             } else if (namePattern.test(firstName.value)) {
-//                 firstName.nextElementSibling.textContent = "";
-//             }
-
-//             // validate last name
-//             if (e.target["id"] === "last-name" && !namePattern.test(lastName.value)) {
-//                 console.log("lastName not OK");
-//                 lastName.nextElementSibling.textContent = "Only a-z, A-Z, hyphens and spaces allowed";
-//             } else if (namePattern.test(lastName.value)) {
-//                 lastName.nextElementSibling.textContent = "";
-//             }
-
-//             // validate email
-//             if (e.target["id"] === "email" && !emailPattern.test(email.value)) {
-//                 console.log("email not OK");
-//                 email.nextElementSibling.textContent = "Please enter a valid email address";
-//             } else if (emailPattern.test(email.value)) {
-//                 email.nextElementSibling.textContent = "";
-//             }
-
-//             // validate phone number
-//             if (e.target["id"] === "phone-number" && !phonePattern.test(phone.value)) {
-//                 console.log("Phone not OK");
-//                 phone.nextElementSibling.textContent = "Must contain 6-16 numbers";
-//             } else if (phonePattern.test(phone.value)) {
-//                 phone.nextElementSibling.textContent = "";
-//             }
-
-//             // validate password
-//             if (e.target["id"] === "password" && (!passwordPattern.test(password.value) || password.value.length < 8)) {
-//                 console.log("password not OK");
-//                 password.nextElementSibling.classList.add("error-message");
-//             } else if (passwordPattern.test(password.value)) {
-//                 password.nextElementSibling.classList.remove("error-message");
-//             }
-
-//             // validate confirm password
-//             if (e.target["id"] === "confirm-password" && password.value !== confirmPassword.value) {
-//                 console.log(confirmPassword.value);
-//                 confirmPassword.nextElementSibling.textContent = "Passwords do not match";
-//             } else if (password.value === confirmPassword.value) {
-//                 confirmPassword.nextElementSibling.textContent = "";
-//                 console.log(confirmPassword.value);
-//             }
-        
-//         }
-//     });
-// });
-
-

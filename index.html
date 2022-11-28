@@ -27,28 +27,28 @@
         </div>
         <div class="form">
             <h2>Let's do this!</h2>
-            <form action="" method="post">
+            <form action="./thanks.html" method="post" novalidate>
                 <div class="field-row">
                     <div class="field">
                         <label for="first-name">First name <span class="required">required</span></label>
-                        <input id="first-name" type="text" name="first-name" maxlength="64" placeholder=" " title="a-z, A-Z, hyphens and spaces allowed" pattern="^[a-zA-Z- ]+$" required autofocus>
+                        <input id="first-name" type="text" name="first-name" maxlength="32" title="a-z, A-Z, hyphens and spaces allowed" required>
                         <div class="error-message"></div>
                     </div>
                     <div class="field">
                         <label for="last-name">Last name <span class="required">required</span></label>
-                        <input id="last-name" type="text" name="last-name" maxlength="64" title="a-z, A-Z, hyphens and spaces allowed" pattern="^[a-zA-Z- ]+$" required>
+                        <input id="last-name" type="text" name="last-name" maxlength="32" title="a-z, A-Z, hyphens and spaces allowed" pattern="^[a-zA-Z- ]+$" required>
                         <div class="error-message"></div>
                     </div>
                 </div>
                 <div class="field-row">
                     <div class="field">
                         <label for="email">Email <span class="required">required</span></label>
-                        <input id="email" type="email" name="email" maxlength="64" title="Must contain @" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required>
+                        <input id="email" type="email" name="email" maxlength="64" title="Must contain @" required>
                         <div class="error-message"></div>
                     </div>
                     <div class="field">
                         <label for="phone-number">Phone number</label>
-                        <input id="phone-number" type="tel" name="phone-number" minlength="6" maxlength="15" title="Must contain 6-16 numbers" pattern="[0-9 \-\+]{6,16}">
+                        <input id="phone-number" type="tel" name="phone-number" minlength="6" maxlength="15" title="Must be a valid phone number" pattern="[0-9 \-\+]{6,16}">
                         <div class="error-message"></div>
                     </div>
                 </div>
