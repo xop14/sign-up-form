@@ -44,7 +44,7 @@ p {
     background-color: blue;
     flex: 1 1 30%;
     display: flex;
-    background: url(./images/space.jpg);
+    background: url(./images/space-lq.jpg);
     background-size:cover;
     color: #fff;
     flex-direction: column;
@@ -66,6 +66,9 @@ p {
 }
 .logo h1 {
     color: #f8f4ff;
+    font-size: 2.5rem;
+    margin-top: 1.5vh;
+    margin-bottom: 30px;
 }
 
 .photo-credits, .photo-credits a {
